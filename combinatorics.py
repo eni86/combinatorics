@@ -1,3 +1,5 @@
+#Combinatorics, by Jenifer
+
 #from the math library imports the factorial function
 from math import factorial
 
