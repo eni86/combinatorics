@@ -3,14 +3,6 @@
 #from the math library imports the factorial function
 from math import factorial
 
-################Check integrity of the data########
-
-
-def m_greater_than_n (m,n):
-    '''It checks that the first number is greater than the second'''
-    return m >= n
-
-##################################################################
 
 ##################Pregunta si desea continuar ##################
 
@@ -30,7 +22,7 @@ def keepGoing():
 
 
 ################Operations: one clas for every operation########################################
-class calcuComb:
+class CalcuComb:
   '''Here calculates the combinations of m in n and saves it in a variable called arr
   and returns a string with the given variables and the calculated value'''
 
@@ -42,7 +34,7 @@ class calcuComb:
   def __str__(self):
     return f'Los arreglos de {self.m} en {self.n} son: {self.arr}'
 
-class calcuArr:
+class CalcuArr:
   '''Here calculates the arrays of m in n and saves it in a variable called comb
   and returns a string with the given variables and the calculated value'''
 
@@ -54,7 +46,7 @@ class calcuArr:
   def __str__(self):
     return f'Los arreglos de {self.m} en {self.n} son: {self.comb}'
 
-class calcuPer():
+class CalcuPer():
   '''Here calculates the permutations of m and saves it in a variable called fact
   and returns a string with the given variables and the calculated value'''
 
@@ -103,17 +95,17 @@ def main ():
                 try:
                     #here the program will prompt to the user to get a number
                     #which is required for all calculation options
-                    primer_nro=int(input("Inserta el primer numero para realizar el calculo: (en el caso de permutaciones, solo se pide este numero) "))
+                    primerNro=int(input("Inserta el primer numero para realizar el calculo: (en el caso de permutaciones, solo se pide este numero) "))
 
                 except ValueError:
                     print ('Lo ingresado no es un numero')
-                    primer_nro=int(input("Inserta el primer numero para realizar el calculo: (en el caso de permutaciones, solo se pide este numero)"))
+                    primerNro=int(input("Inserta el primer numero para realizar el calculo: (en el caso de permutaciones, solo se pide este numero)"))
                 else:
 
                     #if the order is 2, the program will calculate the permutations
                     #of that number
                     if option == 2:
-                        per=calcuPer(primer_nro)
+                        per=CalcuPer(primerNro)
                         print(per.__str__())
 
                     #since in both cases, it will ask for 2 numbers and Ive already asked for
@@ -122,41 +114,41 @@ def main ():
                     elif option == 1 or option == 3:
                         try:
 
-                            segundo_nro=int(input("Inserta el segundo numero para realizar el calculo:"))
+                            segundoNro=int(input("Inserta el segundo numero para realizar el calculo:"))
 
                         #Closes the try on line 102 where it asks for the first number to operate 
                         except ValueError:
                             print('el primer numero ingresado no es valido')
-                            segundo_nro=int(input("Inserta el segundo numero para realizar el calculo:"))
+                            segundoNro=int(input("Inserta el segundo numero para realizar el calculo:"))
                         else:
-                            #combination of primer_nro in segundo_nro
+                            #combination of primerNro in segundoNro
 
-                            if option == 1 and primer_nro >= segundo_nro:
-                                per=calcuComb(primer_nro,segundo_nro)
+                            if option == 1 and primerNro >= segundoNro:
+                                per=CalcuComb(primerNro,segundoNro)
                                 print(per.__str__())
                                 sigo = keepGoing()
 
                             
-                            #combination of segundo_nro of primer_nro
+                            #combination of segundoNro of primerNro
 
-                            elif option == 1 and primer_nro < segundo_nro:
-                                per=calcuComb(segundo_nro,primer_nro)
+                            elif option == 1 and primerNro < segundoNro:
+                                per=CalcuComb(segundoNro,primerNro)
                                 print(per.__str__())
                                 sigo = keepGoing()
 
 
-                            #arrangements of primer_nro in segundo_nro
+                            #arrangements of primerNro in segundoNro
 
-                            elif option == 3 and primer_nro >= segundo_nro:
-                                per=calcuArr(primer_nro,segundo_nro)
+                            elif option == 3 and primerNro >= segundoNro:
+                                per=CalcuArr(primerNro,segundoNro)
                                 print(per.__str__())
                                 sigo = keepGoing()
 
 
-                            #combination of segundo_nro in primer_nro
+                            #combination of segundoNro in primerNro
 
-                            elif option == 1 and primer_nro < segundo_nro:
-                                per=calcuArr(segundo_nro,primer_nro)
+                            elif option == 1 and primerNro < segundoNro:
+                                per=CalcuArr(segundoNro,primerNro)
                                 print(per.__str__())
                                 sigo = keepGoing()
 
