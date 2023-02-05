@@ -3,10 +3,6 @@ from math import factorial
 
 ################Check integrity of the data########
 
-def isNumber(m):
-    '''This function is used if the type of the data received 
-    is a number'''
-    return type(m) == int
 
 def m_greater_than_n (m,n):
     '''It checks that the first number is greater than the second'''
@@ -20,7 +16,7 @@ def keepGoing():
     '''This function asks the user if he wants to keep operating.
     It contemplates 3 options: yes, no or I don't get
     wht do you want me to do'''
-    sigo = input("Desea continuar? Si/nO")
+    sigo = input("Desea continuar? Si/nO ")
     if sigo.lower() == 'no':
         return False
     elif sigo.lower() == 'si':
@@ -31,21 +27,43 @@ def keepGoing():
 
 
 
-################Operations########################################
-def calc_combinations(m, n):
-    ''' This function returns the combinations
-    of two numbers'''
-    return factorial(m)/(factorial (n) * factorial (m-n))
+################Operations: one clas for every operation########################################
+class calcuComb:
+  '''Here calculates the combinations of m in n and saves it in a variable called arr
+  and returns a string with the given variables and the calculated value'''
 
-def calc_arrengements(m, n):
-    ''' This function returns the combinations
-    of two numbers'''
-    return factorial(m)/factorial (m-n)
+  def __init__(self, m, n):
+    self.m = m
+    self.n = n
+    self.arr = factorial(m)/(factorial (n) * factorial (m-n))
+  
+  def __str__(self):
+    return f'Los arreglos de {self.m} en {self.n} son: {self.arr}'
 
-def calc_permutations(m):
-    ''' This function returns the permutations of
-    a given number'''
-    return factorial(m)
+class calcuArr:
+  '''Here calculates the arrays of m in n and saves it in a variable called comb
+  and returns a string with the given variables and the calculated value'''
+
+  def __init__(self, m, n):
+    self.m = m
+    self.n = n
+    self.comb=factorial(m)/factorial (m-n)
+  
+  def __str__(self):
+    return f'Los arreglos de {self.m} en {self.n} son: {self.comb}'
+
+class calcuPer():
+  '''Here calculates the permutations of m and saves it in a variable called fact
+  and returns a string with the given variables and the calculated value'''
+
+  def __init__(self, m):
+    self.m= m
+    self.fac= factorial(m)
+
+  def __str__(self):
+    return f'Las permutaciones de {self.m} son: {self.fac}'
+
+
 
 ################################################################
 
@@ -83,21 +101,19 @@ def main ():
                 try:
                     #here the program will prompt to the user to get a number
                     #which is required for all calculation options
-                    primer_nro=int(input("Inserta el primer numero para \
-                    realizar el calculo: (en el caso de permutaciones, solo se pide este numero)"))
+                    primer_nro=int(input("Inserta el primer numero para realizar el calculo: (en el caso de permutaciones, solo se pide este numero) "))
 
                 except ValueError:
                     print ('Lo ingresado no es un numero')
-                    primer_nro=int(input("Inserta el primer numero para realizar el calculo: (en el caso de permutaciones, solo se \
-                    pide este numero)"))
+                    primer_nro=int(input("Inserta el primer numero para realizar el calculo: (en el caso de permutaciones, solo se pide este numero)"))
                 else:
 
                     #if the order is 2, the program will calculate the permutations
                     #of that number
                     if option == 2:
-                        print("Las permutaciones de {} son: ".format(calc_permutations(primer_nro)))
+                        per=calcuPer(primer_nro)
+                        print(per.__str__())
 
-                        print(calc_permutations(primer_nro))
                     #since in both cases, it will ask for 2 numbers and Ive already asked for
                     #the first, here it will ask for the secon one
 
@@ -114,25 +130,33 @@ def main ():
                             #combination of primer_nro in segundo_nro
 
                             if option == 1 and primer_nro >= segundo_nro:
-                                print('Las combinaciones {} de {} en son:'.format(primer_nro, segundo_nro, calc_combinations(primer_nro,segundo_nro)))
+                                per=calcuComb(primer_nro,segundo_nro)
+                                print(per.__str__())
+                                sigo = keepGoing()
 
                             
                             #combination of segundo_nro of primer_nro
 
                             elif option == 1 and primer_nro < segundo_nro:
-                                print('Las combinaciones de {} en {} son:'.format(segundo_nro,primer_nro, calc_combinations(segundo_nro,primer_nro)))
+                                per=calcuComb(segundo_nro,primer_nro)
+                                print(per.__str__())
+                                sigo = keepGoing()
 
 
                             #arrangements of primer_nro in segundo_nro
 
                             elif option == 3 and primer_nro >= segundo_nro:
-                                print('Los arreglos de {} en {} son:'.format(segundo_nro,primer_nro, calc_arrengements(primer_nro,segundo_nro)))
+                                per=calcuArr(primer_nro,segundo_nro)
+                                print(per.__str__())
+                                sigo = keepGoing()
 
 
                             #combination of segundo_nro in primer_nro
 
                             elif option == 1 and primer_nro < segundo_nro:
-                                print('Las combinaciones de {} en {} son:'.format(segundo_nro,primer_nro, calc_arrengements(segundo_nro,primer_nro)))
+                                per=calcuArr(segundo_nro,primer_nro)
+                                print(per.__str__())
+                                sigo = keepGoing()
 
                             else:
                                 print("No deberia entrar aca")
@@ -147,7 +171,7 @@ def main ():
                         print("La orden no existe")
 
 
-        sigo = keepGoing()
+
 
   
 
@@ -156,4 +180,4 @@ def main ():
 
 if __name__ == '__main__':
     main()
-    print("Gracias por usar combinatorics")
+    print("Gracias por usar combinatorics")    
